@@ -172,6 +172,11 @@
         android:layout_height="40dp"
 
         android:text="CE" />
+    <Button
+        android:id="@+id/FC_histori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Histori"/>
 
 
 

@@ -24,6 +24,7 @@ public class ButtonFragment extends Fragment {
     Double secNum;
     Double reult;
     String operation;
+    ResultFragment resultFragment = new ResultFragment();
     IButtonFragment iButtonFragment;
     TextView textView;
 
@@ -31,7 +32,6 @@ public class ButtonFragment extends Fragment {
     public static ButtonFragment creatButtonFragment(IButtonFragment iButtonFragment){
         ButtonFragment fragment = new ButtonFragment();
         fragment.iButtonFragment = iButtonFragment;
-
         return fragment;
 
     }
@@ -53,6 +53,7 @@ public class ButtonFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textView = view.findViewById(R.id.FB_text_view);
+        Button buttonH =  view.findViewById(R.id.FC_histori);
         Button button0 = view.findViewById(R.id.FC_button_0);
         Button button1 = view.findViewById(R.id.FC_button_1);
         Button button2 = view.findViewById(R.id.FC_button_2);
@@ -70,6 +71,13 @@ public class ButtonFragment extends Fragment {
         Button buttonEqual = view.findViewById(R.id.FC_button_equal);
         Button buttonCline = view.findViewById(R.id.FC_button_cline);
         Button buttonPoint = view.findViewById(R.id.FC_button_point);
+        buttonH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getResult();
+            }
+        });
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +158,7 @@ public class ButtonFragment extends Fragment {
                                     textView.setText(reult + "");
                                     break;
                             }
-                            iButtonFragment.showRecycler();
+
 
 
 
@@ -182,4 +190,14 @@ public class ButtonFragment extends Fragment {
 
 
     }
+
+
+     public void getResult(){
+        String text = textView.getText().toString();
+        Log.d("pop", "Otpravka"+text);
+        Bundle bundle = new Bundle();
+        bundle.putString("key",text);
+        resultFragment.setArguments(bundle);
+         iButtonFragment.showRecycler();
+     }
 }

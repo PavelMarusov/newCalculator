@@ -51,7 +51,20 @@ public class ResultFragment extends Fragment {
                 iresFragment.showCalculator();
             }
         });
+        Button button1 = view.findViewById(R.id.get);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getRes();
+            }
+        });
 
 
+    }
+
+    public void getRes(){
+        String s = getArguments().getString("key");
+        Log.d("pop",s);
+        adapterView.addText(s);
     }
 }
