@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +24,7 @@ public class ResultFragment extends Fragment {
     AdapterView adapterView;
     RecyclerView recyclerView;
     IResFragment iresFragment;
-
+    ArrayList<String> list = new ArrayList<>();
 
     public ResultFragment() {
         // Required empty public constructor
@@ -48,7 +50,8 @@ public class ResultFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iresFragment.showCalculator();
+                IResFragment iResFragment = (IResFragment) getActivity();
+                iResFragment.showCalculator();
             }
         });
         Button button1 = view.findViewById(R.id.get);
@@ -62,9 +65,12 @@ public class ResultFragment extends Fragment {
 
     }
 
-    public void getRes(){
-        String s = getArguments().getString("key");
-        Log.d("pop",s);
-        adapterView.addText(s);
+    public void getRes() {
+        list = getArguments().getStringArrayList("key");
+        for (int i = 0; i < list.size(); i++) {
+            Log.d("pop", list.get(i));
+            adapterView.addText(list.get(i));
+        }
+
     }
 }

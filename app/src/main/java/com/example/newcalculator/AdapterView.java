@@ -15,6 +15,7 @@ public class AdapterView extends RecyclerView.Adapter<Viewholder> {
     public AdapterView (){
         data= new ArrayList<>();
         data.add("Results :");
+        notifyDataSetChanged();
     }
     @NonNull
     @Override

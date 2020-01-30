@@ -25,7 +25,6 @@ ResultFragment resultFragment = new ResultFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container,ButtonFragment.creatButtonFragment(this));
-
         transaction.commit();
     }
 
@@ -35,9 +34,6 @@ ResultFragment resultFragment = new ResultFragment();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container,resultFragment);
         transaction.commit();
-
-
-
     }
 
 

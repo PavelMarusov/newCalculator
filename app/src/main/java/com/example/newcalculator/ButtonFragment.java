@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -24,6 +28,7 @@ public class ButtonFragment extends Fragment {
     Double secNum;
     Double reult;
     String operation;
+    ArrayList<String>list= new ArrayList<>();
     ResultFragment resultFragment = new ResultFragment();
     IButtonFragment iButtonFragment;
     TextView textView;
@@ -193,11 +198,19 @@ public class ButtonFragment extends Fragment {
 
 
      public void getResult(){
+         change(resultFragment);
         String text = textView.getText().toString();
+        list.add(text);
         Log.d("pop", "Otpravka"+text);
         Bundle bundle = new Bundle();
-        bundle.putString("key",text);
+        bundle.putStringArrayList("key",list);
         resultFragment.setArguments(bundle);
-         iButtonFragment.showRecycler();
+
+     }
+     public void change(Fragment fragment){
+         FragmentManager manager = getFragmentManager();
+         FragmentTransaction transaction = manager.beginTransaction();
+         transaction.replace(R.id.container,resultFragment);
+         transaction.commit();
      }
 }
